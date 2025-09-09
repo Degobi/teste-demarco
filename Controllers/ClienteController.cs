@@ -15,33 +15,33 @@ namespace teste_demarco.Controllers
             _service = service;
         }
 
-        [HttpGet, Route(""), AllowAnonymous]
-        public async Task<IResult> Get()
+        [HttpGet, AllowAnonymous]
+        public async Task<IActionResult> Get()
         {
             try
             {
                 var data = await _service.GetAll();
 
-                return Results.Ok(data);
+                return Ok(data);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                throw new Exception(ex.Message);
+                throw;
             }
         }
 
-        [HttpPost, Route(""), AllowAnonymous]
-        public async Task<IResult> Post([FromBody] ClienteDto entity)
+        [HttpPost, AllowAnonymous]
+        public async Task<IActionResult> Post([FromBody] ClienteDto entity)
         {
             try
             {
                 var data = await _service.Save(entity);
 
-                return Results.Ok(data);
+                return Ok(data);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                throw new Exception(ex.Message);
+                throw;
             }
         }
     }
